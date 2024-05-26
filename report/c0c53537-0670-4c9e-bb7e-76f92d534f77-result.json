@@ -1,0 +1,162 @@
+{
+  "name": "Change profile details",
+  "status": "passed",
+  "steps": [
+    {
+      "name": "Open page https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+      "status": "passed",
+      "start": 1716750284622,
+      "stop": 1716750286408
+    },
+    {
+      "name": "enter login details",
+      "status": "passed",
+      "parameters": [
+        {
+          "name": "login",
+          "value": "'Admin'"
+        }
+      ],
+      "start": 1716750286409,
+      "stop": 1716750287537
+    },
+    {
+      "name": "enter login password",
+      "status": "passed",
+      "parameters": [
+        {
+          "name": "password",
+          "value": "'admin123'"
+        }
+      ],
+      "start": 1716750287537,
+      "stop": 1716750287591
+    },
+    {
+      "name": "eclick submit button",
+      "status": "passed",
+      "start": 1716750287591,
+      "stop": 1716750288413
+    },
+    {
+      "name": "Page https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index is open",
+      "status": "passed",
+      "start": 1716750288414,
+      "stop": 1716750288415
+    },
+    {
+      "name": "Go to MyInfo menu item",
+      "status": "passed",
+      "start": 1716750288416,
+      "stop": 1716750290122
+    },
+    {
+      "name": "Page https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber/7 is open",
+      "status": "passed",
+      "start": 1716750290122,
+      "stop": 1716750290124
+    },
+    {
+      "name": "enter new user details",
+      "status": "passed",
+      "steps": [
+        {
+          "name": "enter new user details",
+          "status": "passed",
+          "start": 1716750290124,
+          "stop": 1716750296529
+        }
+      ],
+      "parameters": [
+        {
+          "name": "new_name",
+          "value": "'Sergiusz80'"
+        }
+      ],
+      "start": 1716750290124,
+      "stop": 1716750296529
+    },
+    {
+      "name": "save changes",
+      "status": "passed",
+      "start": 1716750296530,
+      "stop": 1716750296580
+    },
+    {
+      "name": "validate the result",
+      "status": "passed",
+      "parameters": [
+        {
+          "name": "new_name",
+          "value": "'Sergiusz80'"
+        }
+      ],
+      "start": 1716750296580,
+      "stop": 1716750296587
+    }
+  ],
+  "attachments": [
+    {
+      "name": "report_screenshot.png",
+      "source": "805a924b-1898-45ed-8935-c4d32770dd7d-attachment.png",
+      "type": "image/png"
+    },
+    {
+      "name": "stdout",
+      "source": "f206c1ae-6a87-4d36-9ffd-186fca6cacbe-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "start": 1716750284621,
+  "stop": 1716750296822,
+  "uuid": "69512409-6871-4a13-bd32-ebdc8cd3e83c",
+  "historyId": "6e627b5a4b59b87a908f1e1b30714237",
+  "testCaseId": "6e627b5a4b59b87a908f1e1b30714237",
+  "fullName": "tests.feature_profile_test.TestProfileFeatureTest#test_change_profile_name",
+  "labels": [
+    {
+      "name": "feature",
+      "value": "Profile functionality"
+    },
+    {
+      "name": "severity",
+      "value": "Critical"
+    },
+    {
+      "name": "tag",
+      "value": "smoke"
+    },
+    {
+      "name": "parentSuite",
+      "value": "tests"
+    },
+    {
+      "name": "suite",
+      "value": "feature_profile_test"
+    },
+    {
+      "name": "subSuite",
+      "value": "TestProfileFeatureTest"
+    },
+    {
+      "name": "host",
+      "value": "serhiis-air.home"
+    },
+    {
+      "name": "thread",
+      "value": "31404-MainThread"
+    },
+    {
+      "name": "framework",
+      "value": "pytest"
+    },
+    {
+      "name": "language",
+      "value": "cpython3"
+    },
+    {
+      "name": "package",
+      "value": "tests.feature_profile_test"
+    }
+  ]
+}

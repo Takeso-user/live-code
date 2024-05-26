@@ -1,0 +1,7 @@
+username: Admin
+password: admin123
+Поле очищено с помощью двойного клика и удаления, проверяем...
+Поле действительно пустое
+Новое имя введено: Sergiusz80
+name Sergiusz80
+test completed
