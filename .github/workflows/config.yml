@@ -17,6 +17,11 @@ jobs:
       - name: Generate allure-report
         run: |
           sudo docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
+      - name: Clean up existing worktree
+        run: |
+          git worktree prune
+          git worktree list | awk '{print $1}' | xargs -I{} rm -rf {}
+          git branch -D gh-pages || true
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
