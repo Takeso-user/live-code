@@ -17,6 +17,9 @@ jobs:
       - name: Generate allure-report
         run: |
           sudo docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
+      - name: Set correct permissions for allure-report
+        run: |
+          sudo chmod -R 777 allure-report
       - name: Clean up existing worktree
         run: |
           git worktree list | awk '{print $1}' | xargs -I{} sudo rm -rf {}
