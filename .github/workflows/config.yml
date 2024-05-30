@@ -43,8 +43,9 @@ jobs:
       - name: Clean up existing worktree
         run: |
           echo "Cleaning up worktree"
-          git worktree list | awk '{print $1}' | grep -v "^$" | xargs -I{} sudo rm -rf {}
+          git worktree list
           git worktree prune
+          echo "Worktree cleaned"
 
       - name: Debugging working directory after cleanup
         run: |
