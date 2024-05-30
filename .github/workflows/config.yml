@@ -34,16 +34,28 @@ jobs:
         run: |
           sudo chmod -R 777 allure-report
 
+      - name: Debugging working directory before cleanup
+        run: |
+          echo "Before cleanup"
+          pwd
+          ls -la
+
       - name: Clean up existing worktree
         run: |
+          echo "Cleaning up worktree"
           git worktree list | awk '{print $1}' | grep -v "^$" | xargs -I{} sudo rm -rf {}
           git worktree prune
-        working-directory: ${{ github.workspace }}
+
+      - name: Debugging working directory after cleanup
+        run: |
+          echo "After cleanup"
+          pwd
+          ls -la
 
       - name: Remove gh-pages branch if exists
         run: |
+          echo "Removing gh-pages branch if exists"
           git branch -D gh-pages || true
-        working-directory: ${{ github.workspace }}
 
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
@@ -57,4 +69,3 @@ jobs:
         run: |
           pwd
           ls -la
-        working-directory: ${{ github.workspace }}
