@@ -22,6 +22,7 @@ jobs:
           sudo chmod -R 777 allure-report
       - name: Clean up existing worktree
         run: |
+          cd ${{ github.workspace }} # Убедитесь, что вы находитесь в правильном каталоге
           git worktree list | awk '{print $1}' | xargs -I{} sudo rm -rf {}
           git worktree prune
       - name: Remove gh-pages branch if exists
@@ -34,3 +35,8 @@ jobs:
           branch: gh-pages
           folder: allure-report
           clean: true
+      - name: Check current directory
+        run: |
+          pwd
+          ls -la
+
