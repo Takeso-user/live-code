@@ -19,11 +19,6 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Verify CI_TOKEN presence
-        run: echo "CI_TOKEN is set"
-        env:
-          CI_TOKEN: ${{ secrets.CI_TOKEN }}
-
       - name: Run Ui-test via docker-compose
         env:
           LOGIN: ${{secrets.LOGIN}}
@@ -41,12 +36,14 @@ jobs:
 
       - name: Clean up existing worktree
         run: |
-          git worktree list | awk '{print $1}' | xargs -I{} sudo rm -rf {}
+          git worktree list | awk '{print $1}' | grep -v "^$" | xargs -I{} sudo rm -rf {}
           git worktree prune
+        working-directory: ${{ github.workspace }}
 
       - name: Remove gh-pages branch if exists
         run: |
           git branch -D gh-pages || true
+        working-directory: ${{ github.workspace }}
 
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
@@ -60,3 +57,4 @@ jobs:
         run: |
           pwd
           ls -la
+        working-directory: ${{ github.workspace }}
