@@ -9,6 +9,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Check current directory and contents
+        run: |
+          pwd
+          ls -la
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Verify CI_TOKEN presence
+        run: echo "CI_TOKEN is set"
+        env:
+          CI_TOKEN: ${{ secrets.CI_TOKEN }}
+
       - name: Run Ui-test via docker-compose
         env:
           LOGIN: ${{secrets.LOGIN}}
@@ -26,13 +41,11 @@ jobs:
 
       - name: Clean up existing worktree
         run: |
-          cd ${{ github.workspace }}
           git worktree list | awk '{print $1}' | xargs -I{} sudo rm -rf {}
           git worktree prune
 
       - name: Remove gh-pages branch if exists
         run: |
-          cd ${{ github.workspace }}
           git branch -D gh-pages || true
 
       - name: Deploy to Github Pages
@@ -43,8 +56,7 @@ jobs:
           folder: allure-report
           clean: true
 
-      - name: Print current directory and contents
+      - name: Print current directory and contents after deployment
         run: |
-          cd ${{ github.workspace }}
           pwd
           ls -la
