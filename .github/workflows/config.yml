@@ -8,26 +8,33 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Run Ui-test via docker-compose
         env:
           LOGIN: ${{secrets.LOGIN}}
           PASSWORD: ${{secrets.PASSWORD}}
         run: |
           docker-compose up --exit-code-from regression || true
+
       - name: Generate allure-report
         run: |
           sudo docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
+
       - name: Set correct permissions for allure-report
         run: |
           sudo chmod -R 777 allure-report
+
       - name: Clean up existing worktree
         run: |
-          cd ${{ github.workspace }} # Убедитесь, что вы находитесь в правильном каталоге
+          cd ${{ github.workspace }}
           git worktree list | awk '{print $1}' | xargs -I{} sudo rm -rf {}
           git worktree prune
+
       - name: Remove gh-pages branch if exists
         run: |
+          cd ${{ github.workspace }}
           git branch -D gh-pages || true
+
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
@@ -35,8 +42,9 @@ jobs:
           branch: gh-pages
           folder: allure-report
           clean: true
-      - name: Check current directory
+
+      - name: Print current directory and contents
         run: |
+          cd ${{ github.workspace }}
           pwd
           ls -la
-
